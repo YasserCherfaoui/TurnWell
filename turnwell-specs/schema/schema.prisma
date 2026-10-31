@@ -1,0 +1,692 @@
+// TurnWell — Prisma schema (source of truth for the data model)
+// Three PostgreSQL schemas isolate data classes: account, private, community (+ system).
+// RULE: community.* tables never reference User. The only bridge is IdentityLink (encrypted).
+// IDs are UUIDv7 generated in the app layer (uuidv7 package) — no DB default.
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["account", "private", "community", "system"]
+}
+
+// ───────────────────────────── ENUMS ─────────────────────────────
+
+enum AuthProvider {
+  EMAIL
+  GOOGLE
+  APPLE
+
+  @@schema("account")
+}
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+
+  @@schema("account")
+}
+
+enum Platform {
+  IOS
+  ANDROID
+
+  @@schema("account")
+}
+
+enum Mode {
+  SINS
+  HABITS
+
+  @@schema("private")
+}
+
+enum CoachGender {
+  MALE
+  FEMALE
+
+  @@schema("private")
+}
+
+enum CoachTone {
+  GENTLE
+  BALANCED
+  FIRM
+
+  @@schema("private")
+}
+
+enum ThemeChoice {
+  AUTO
+  DAWN
+  NIGHT_SANCTUARY
+  OASIS
+
+  @@schema("private")
+}
+
+enum ItemCategory {
+  SEXUAL
+  SUBSTANCES
+  DIGITAL
+  SPEECH
+  EMOTIONAL
+  FINANCIAL
+  WORSHIP
+  BODY
+  PRODUCTIVITY
+  CUSTOM
+
+  @@schema("private")
+}
+
+enum EntryType {
+  CHECK_IN
+  SLIP
+  URGE
+  JOURNAL
+  ITEM // encrypted tracked-item definition travels through the same sync pipe
+
+  @@schema("private")
+}
+
+enum ConversationKind {
+  ONBOARDING
+  COACH
+  SOS
+  CRISIS
+  NUDGE
+
+  @@schema("private")
+}
+
+enum MessageRole {
+  USER
+  COACH
+  SYSTEM
+
+  @@schema("private")
+}
+
+enum ContactChannel {
+  SMS
+  WHATSAPP
+  EMAIL
+
+  @@schema("private")
+}
+
+enum Visibility {
+  PUBLIC
+  PEOPLE_LIKE_ME
+
+  @@schema("community")
+}
+
+enum ModerationState {
+  PENDING
+  PUBLISHED
+  BLURRED
+  HELD
+  HIDDEN_CRISIS
+  REMOVED
+
+  @@schema("community")
+}
+
+enum PseudonymStatus {
+  ACTIVE
+  MUTED
+  SUSPENDED
+  BANNED
+
+  @@schema("community")
+}
+
+enum GenderPref {
+  MALE
+  FEMALE
+  UNSPECIFIED
+
+  @@schema("community")
+}
+
+enum ReactionType {
+  SUPPORT
+  SAME_HERE
+  PRAYING // Sins mode only
+
+  @@schema("community")
+}
+
+enum ReportReason {
+  HARASSMENT
+  SEXUAL
+  GROOMING
+  SCAM
+  HATE
+  SELF_HARM
+  CONTACT_SHARING
+  SPAM
+  MINOR
+  OTHER
+
+  @@schema("community")
+}
+
+enum ReportStatus {
+  OPEN
+  IN_REVIEW
+  ACTIONED
+  DISMISSED
+
+  @@schema("community")
+}
+
+enum ModAction {
+  HIDE
+  RESTORE
+  WARN
+  MUTE_24H
+  MUTE_7D
+  SUSPEND
+  BAN_ACCOUNT
+  DISMISS_REPORT
+  UNMASK // legal escalation only
+
+  @@schema("community")
+}
+
+// ───────────────────────────── ACCOUNT ─────────────────────────────
+
+model User {
+  id               String       @id @db.Uuid
+  emailEnc         String?      // KMS-encrypted; null for Apple private relay-less cases
+  emailHash        String?      @unique // HMAC-SHA256 for lookup
+  passwordHash     String?      // argon2id, EMAIL provider only
+  authProvider     AuthProvider
+  providerSubject  String?      // Google/Apple "sub"
+  role             Role         @default(USER)
+  locale           String       @default("en")
+  timezone         String       @default("UTC")
+  ageConfirmedAt   DateTime?
+  emailVerifiedAt  DateTime?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  deletedAt        DateTime?    // soft delete → hard delete job after 30 days
+  totpSecretEnc    String?      // staff only (MODERATOR/ADMIN) — M13
+  legalHold        Boolean      @default(false) // blocks hard delete — M17
+
+  devices        Device[]
+  refreshTokens  RefreshToken[]
+  keyBackup      KeyBackup?
+  subscription   Subscription?
+  profile        Profile?
+
+  @@unique([authProvider, providerSubject])
+  @@map("users")
+  @@schema("account")
+}
+
+model RefreshToken {
+  id         String    @id @db.Uuid
+  userId     String    @db.Uuid
+  tokenHash  String    @unique
+  familyId   String    @db.Uuid // rotation family, revoke all on reuse
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  createdAt  DateTime  @default(now())
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+  @@schema("account")
+}
+
+model Device {
+  id         String   @id @db.Uuid
+  userId     String   @db.Uuid
+  platform   Platform
+  pushToken  String?
+  appVersion String
+  lastSeenAt DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("devices")
+  @@schema("account")
+}
+
+model KeyBackup {
+  userId           String   @id @db.Uuid
+  wrappedMasterKey String   // base64url: XChaCha20-Poly1305(masterKey, KEK from Argon2id(passphrase))
+  kdfSalt          String
+  kdfParams        Json     // { "m": 65536, "t": 3, "p": 1 }
+  keyVersion       Int      @default(1)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("key_backups")
+  @@schema("account")
+}
+
+model Subscription { // v2 — table exists in v1 so entitlements can be checked
+  userId     String    @id @db.Uuid
+  platform   Platform
+  productId  String
+  status     String    // ACTIVE | GRACE | EXPIRED | REFUNDED
+  expiresAt  DateTime?
+  updatedAt  DateTime  @updatedAt
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+  @@schema("account")
+}
+
+model NotifyToken { // M12: pushes for community replies route via token, community never maps pseudonym → user
+  token     String   @id
+  userId    String   @db.Uuid
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("notify_tokens")
+  @@schema("account")
+}
+
+// ───────────────────────────── PRIVATE ─────────────────────────────
+
+model Profile {
+  userId              String      @id @db.Uuid
+  modes               Mode[]
+  coachName           String
+  coachGender         CoachGender
+  coachVoiceId        String?
+  coachTone           CoachTone   @default(BALANCED)
+  theme               ThemeChoice @default(AUTO)
+  profileEnc          String?     // KMS-encrypted JSON: onboarding facts used by the coach
+  planEnc             String?     // KMS-encrypted JSON: current plan (see M03)
+  planVersion         Int         @default(0)
+  onboardingDoneAt    DateTime?
+  onboardingStep      String?     // M03: MODE | COACH | CHAT | PLAN | SAFETY | DONE (resume point, no content)
+  dailyAiMessageCount Int         @default(0)
+  dailyAiCountDate    String?     // YYYY-MM-DD (user tz)
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+  user                User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+  @@schema("private")
+}
+
+// E2E-encrypted sync records. Server cannot read payloadEnc.
+model Entry {
+  id          String    @id @db.Uuid
+  userId      String    @db.Uuid
+  type        EntryType
+  itemId      String?   @db.Uuid // plaintext ref so the server can count per item without content
+  occurredOn  String    // YYYY-MM-DD user tz (needed for nudge + streak metadata)
+  payloadEnc  String    // base64url ciphertext
+  encVersion  Int       @default(1)
+  version     Int       @default(1) // incremented on every update (sync conflict check)
+  deleted     Boolean   @default(false) // tombstone
+  clientUpdatedAt DateTime
+  serverUpdatedAt DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+
+  @@index([userId, serverUpdatedAt])
+  @@index([userId, type, occurredOn])
+  @@map("entries")
+  @@schema("private")
+}
+
+model NudgeSchedule {
+  userId        String   @id @db.Uuid
+  checkInTime   String   // "21:30" local
+  riskyWindows  Json     // [{ "dow": [1,2,3,4,5], "start": "23:00", "end": "01:00" }] computed on device
+  maxPerDay     Int      @default(3)
+  quietStart    String   @default("23:00")
+  quietEnd      String   @default("07:00")
+  timezone      String
+  enabled       Boolean  @default(true)
+  ignoredStreak Int      @default(0)
+  lastNudgeAt   DateTime?
+  lastCheckInOn String?  // YYYY-MM-DD, updated by sync (metadata only)
+  lastSlipOn    String?
+  templateKey   String   @default("NOTES") // M11/M14 discreet lock-screen template
+  templateTitle String?
+  templateBody  String?
+  checkInReminder Boolean @default(true)
+  lastMilestone Int      @default(0)
+  kinds         Json?    // M14: { "CHECK_IN": true, "PRE_TRIGGER": true, "FOLLOW_UP": true, "ENCOURAGEMENT": true, "FAITH": true }
+  updatedAt     DateTime @updatedAt
+
+  @@map("nudge_schedules")
+  @@schema("private")
+}
+
+model NudgeLog {
+  id        String   @id @db.Uuid
+  userId    String   @db.Uuid
+  kind      String   // CHECK_IN | PRE_TRIGGER | FOLLOW_UP | ENCOURAGEMENT | FAITH | SAFETY_FOLLOW_UP
+  messageId String?  @db.Uuid // AiMessage that holds the nudge text
+  sentAt    DateTime @default(now())
+  openedAt  DateTime?
+
+  @@index([userId, sentAt])
+  @@map("nudge_logs")
+  @@schema("private")
+}
+
+model AiConversation {
+  id        String           @id @db.Uuid
+  userId    String           @db.Uuid
+  kind      ConversationKind
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  messages  AiMessage[]
+
+  @@index([userId, updatedAt])
+  @@map("ai_conversations")
+  @@schema("private")
+}
+
+model AiMessage {
+  id             String         @id @db.Uuid
+  conversationId String         @db.Uuid
+  role           MessageRole
+  contentEnc     String         // KMS-encrypted
+  safetyLevel    Int            @default(0) // 0–3
+  model          String?        // e.g. gemini-2.5-flash
+  inputTokens    Int?
+  outputTokens   Int?
+  createdAt      DateTime       @default(now())
+  conversation   AiConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+  @@index([createdAt]) // 90-day cleanup job
+  @@map("ai_messages")
+  @@schema("private")
+}
+
+model AiMemory {
+  userId     String   @id @db.Uuid
+  summaryEnc String   // KMS-encrypted rolling summary, ≤ ~1,500 tokens
+  version    Int      @default(1)
+  updatedAt  DateTime @updatedAt
+
+  @@map("ai_memory")
+  @@schema("private")
+}
+
+model TrustedContact {
+  userId     String         @id @db.Uuid
+  nameEnc    String
+  channel    ContactChannel
+  valueEnc   String         // phone or email, KMS-encrypted
+  messageEnc String         // pre-written by the user
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  @@map("trusted_contacts")
+  @@schema("private")
+}
+
+model SafetyEvent { // no content stored — only the fact a level was reached
+  id        String   @id @db.Uuid
+  userId    String   @db.Uuid
+  level     Int
+  source    String   // COACH | SOS | POST | REPLY | JOURNAL_AI
+  actions   String[] // SHOWN_CARD | CONTACT_PROMPTED | CONTACT_SENT | FOLLOW_UP_SCHEDULED
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@map("safety_events")
+  @@schema("private")
+}
+
+// ───────────────────────────── COMMUNITY ─────────────────────────────
+// No userId anywhere in this schema.
+
+model Pseudonym {
+  id          String          @id @db.Uuid
+  displayName String          @unique // e.g. "QuietCedar42"
+  avatarSeed  String          // deterministic abstract avatar
+  genderPref  GenderPref      @default(UNSPECIFIED)
+  locale      String
+  categories  String[]        // ItemCategory values the user opted to share for "People like me"
+  modes       String[]        // SINS / HABITS
+  status      PseudonymStatus @default(ACTIVE)
+  mutedUntil  DateTime?
+  strikes     Int             @default(0)
+  notifyToken String?         @unique // M12
+  lastRenamedAt DateTime?     // M12
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  posts     Post[]
+  replies   Reply[]
+  reactions Reaction[]
+
+  @@map("pseudonyms")
+  @@schema("community")
+}
+
+model IdentityLink {
+  pseudonymId String   @id @db.Uuid
+  userIdEnc   String   // encrypted with KMS key "identity-link" (separate key ring, audited)
+  userIdHash  String   @unique // HMAC with separate secret → lookup pseudonym for a user without decrypting
+  createdAt   DateTime @default(now())
+
+  @@map("identity_links")
+  @@schema("community")
+}
+
+model Post {
+  id              String          @id @db.Uuid
+  pseudonymId     String          @db.Uuid
+  circleId        String?         @db.Uuid // v2
+  visibility      Visibility
+  categories      String[]        // copied from author's opted-in categories at post time
+  mode            String?         // SINS | HABITS
+  locale          String
+  sameGenderOnly  Boolean         @default(false)
+  authorGender    GenderPref      @default(UNSPECIFIED)
+  bodyEnc         String          // KMS-encrypted (app-level), decrypted by API for readers
+  contentWarning  Boolean         @default(false)
+  moderationState ModerationState @default(PENDING)
+  moderationLabels Json?          // { "labels": ["graphic_relapse"], "scores": {...} }
+  replyCount      Int             @default(0)
+  reactionCount   Int             @default(0)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  deletedAt       DateTime?
+
+  pseudonym Pseudonym  @relation(fields: [pseudonymId], references: [id])
+  replies   Reply[]
+  reactions Reaction[]
+
+  @@index([moderationState, visibility, locale, createdAt])
+  @@index([categories], type: Gin)
+  @@index([pseudonymId, createdAt])
+  @@map("posts")
+  @@schema("community")
+}
+
+model Reply {
+  id              String          @id @db.Uuid
+  postId          String          @db.Uuid
+  pseudonymId     String          @db.Uuid
+  bodyEnc         String
+  moderationState ModerationState @default(PENDING)
+  moderationLabels Json?
+  createdAt       DateTime        @default(now())
+  deletedAt       DateTime?
+
+  post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  pseudonym Pseudonym @relation(fields: [pseudonymId], references: [id])
+
+  @@index([postId, createdAt])
+  @@map("replies")
+  @@schema("community")
+}
+
+model Reaction {
+  postId      String       @db.Uuid
+  pseudonymId String       @db.Uuid
+  type        ReactionType
+  createdAt   DateTime     @default(now())
+
+  post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  pseudonym Pseudonym @relation(fields: [pseudonymId], references: [id])
+
+  @@id([postId, pseudonymId])
+  @@map("reactions")
+  @@schema("community")
+}
+
+model Block {
+  blockerId String   @db.Uuid // pseudonym ids
+  blockedId String   @db.Uuid
+  createdAt DateTime @default(now())
+
+  @@id([blockerId, blockedId])
+  @@map("blocks")
+  @@schema("community")
+}
+
+model Report {
+  id                String       @id @db.Uuid
+  targetType        String       // POST | REPLY | PSEUDONYM | DM_MESSAGE
+  targetId          String       @db.Uuid
+  reporterPseudonym String       @db.Uuid
+  reason            ReportReason
+  note              String?      // max 500 chars, optional
+  aiScore           Float?       // AI severity 0–1
+  priority          Float        @default(0) // M13 queue order
+  claimedUntil      DateTime?    // M13 moderator claim lock
+  status            ReportStatus @default(OPEN)
+  assignedTo        String?      @db.Uuid // moderator User.id (staff accounts only)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  @@index([status, aiScore])
+  @@map("reports")
+  @@schema("community")
+}
+
+model ModerationAction {
+  id          String    @id @db.Uuid
+  moderatorId String?   @db.Uuid // null = automated (AI)
+  targetType  String
+  targetId    String    @db.Uuid
+  action      ModAction
+  reason      String
+  reportId    String?   @db.Uuid
+  approvedBy  String?   @db.Uuid // second approver for UNMASK
+  undoneAt    DateTime? // M13
+  createdAt   DateTime  @default(now())
+
+  @@index([targetType, targetId])
+  @@map("moderation_actions")
+  @@schema("community")
+}
+
+// v2 — DMs (schema reserved so v1 code can leave extension points)
+model DmThread {
+  id           String   @id @db.Uuid
+  aPseudonym   String   @db.Uuid
+  bPseudonym   String   @db.Uuid
+  consentState String   // REQUESTED | ACCEPTED | DECLINED | FROZEN
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([aPseudonym, bPseudonym])
+  @@map("dm_threads")
+  @@schema("community")
+}
+
+model DmMessage {
+  id              String          @id @db.Uuid
+  threadId        String          @db.Uuid
+  senderPseudonym String          @db.Uuid
+  bodyEnc         String
+  moderationState ModerationState @default(PENDING)
+  createdAt       DateTime        @default(now())
+
+  @@index([threadId, createdAt])
+  @@map("dm_messages")
+  @@schema("community")
+}
+
+// ───────────────────────────── SYSTEM ─────────────────────────────
+
+model Hotline {
+  id          String   @id @db.Uuid
+  countryCode String   // ISO 3166-1 alpha-2, "ZZ" = global fallback
+  name        String
+  phone       String?
+  sms         String?
+  url         String?
+  languages   String[]
+  isEmergency Boolean  @default(false) // 112 / 911 style
+  verifiedAt  DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([countryCode])
+  @@map("hotlines")
+  @@schema("system")
+}
+
+model Escalation { // M13 legal / imminent-harm un-mask requests (two approvers)
+  id          String    @id @db.Uuid
+  pseudonymId String    @db.Uuid
+  requestedBy String    @db.Uuid
+  approvedBy  String?   @db.Uuid
+  basis       String    // LEGAL_REQUEST | IMMINENT_HARM
+  reference   String?   // legal reference number
+  status      String    // REQUESTED | APPROVED | REJECTED | REVEALED
+  revealedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([status, createdAt])
+  @@map("escalations")
+  @@schema("system")
+}
+
+model LlmUsageDaily { // M08 cost accounting
+  day          String   // YYYY-MM-DD UTC
+  task         String
+  model        String
+  calls        Int      @default(0)
+  inputTokens  Int      @default(0)
+  outputTokens Int      @default(0)
+  costMicros   BigInt   @default(0)
+  fallbacks    Int      @default(0)
+  errors       Int      @default(0)
+
+  @@id([day, task, model])
+  @@map("llm_usage_daily")
+  @@schema("system")
+}
+
+model AuditLog {
+  id        String   @id @db.Uuid
+  actorId   String?  @db.Uuid
+  action    String   // e.g. IDENTITY_LINK_READ, ADMIN_LOGIN
+  target    String?
+  meta      Json?
+  createdAt DateTime @default(now())
+
+  @@index([action, createdAt])
+  @@map("audit_logs")
+  @@schema("system")
+}

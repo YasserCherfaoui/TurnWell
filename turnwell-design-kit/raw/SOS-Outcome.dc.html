@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SOS — outcome</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#EEF0FA}a:hover{color:#C4B5FD}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: Inter, sans-serif; color: #EEF0FA; background: linear-gradient(170deg, #050816 0%, #0B1230 45%, #1A1446 80%, #2A1A5E 100%)">
+  <div aria-hidden="true" style="position: absolute; width: 360px; height: 320px; border-radius: 50%; background: #7C3AED; filter: blur(100px); opacity: 0.5; top: 60px; left: 15px"></div>
+  <div aria-hidden="true" style="position: absolute; width: 220px; height: 200px; border-radius: 50%; background: #2DD4BF; filter: blur(90px); opacity: 0.18; bottom: 120px; left: -60px"></div>
+  <div aria-hidden="true" style="position: absolute; inset: 0">
+    <sc-for list="{{ stars }}" as="s" hint-placeholder-count="36">
+      <span style="{{ s.style }}"></span>
+    </sc-for>
+  </div>
+
+  <div style="position: absolute; inset: 0; box-sizing: border-box; padding: 64px 22px 26px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+    <svg width="320" height="230" viewBox="0 0 320 230" role="img" aria-label="Illustration: a new star bursts into light, joining a constellation of 14 earlier stars">
+      <defs>
+        <radialGradient id="so-burst" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"></stop><stop offset="0.25" stop-color="#DDD6FE" stop-opacity="0.8"></stop><stop offset="1" stop-color="#7C3AED" stop-opacity="0"></stop></radialGradient>
+        <radialGradient id="so-s" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="0.4" stop-color="#E9E2FF"></stop><stop offset="1" stop-color="#A78BFA" stop-opacity="0"></stop></radialGradient>
+      </defs>
+      <g stroke="#C4B5FD" stroke-width="1.3" opacity="0.55" stroke-linecap="round">
+        <path d="M30 170L70 140L104 160L138 120"></path><path d="M182 120L216 150L252 128L290 160"></path><path d="M138 120L160 104"></path><path d="M182 120L160 104"></path>
+      </g>
+      <circle cx="30" cy="170" r="10" fill="url(#so-s)"></circle><circle cx="30" cy="170" r="3" fill="#FFFFFF"></circle>
+      <circle cx="70" cy="140" r="10" fill="url(#so-s)"></circle><circle cx="70" cy="140" r="3" fill="#FFFFFF"></circle>
+      <circle cx="104" cy="160" r="10" fill="url(#so-s)"></circle><circle cx="104" cy="160" r="3" fill="#FFFFFF"></circle>
+      <circle cx="138" cy="120" r="10" fill="url(#so-s)"></circle><circle cx="138" cy="120" r="3" fill="#FFFFFF"></circle>
+      <circle cx="182" cy="120" r="10" fill="url(#so-s)"></circle><circle cx="182" cy="120" r="3" fill="#FFFFFF"></circle>
+      <circle cx="216" cy="150" r="10" fill="url(#so-s)"></circle><circle cx="216" cy="150" r="3" fill="#FFFFFF"></circle>
+      <circle cx="252" cy="128" r="10" fill="url(#so-s)"></circle><circle cx="252" cy="128" r="3" fill="#FFFFFF"></circle>
+      <circle cx="290" cy="160" r="10" fill="url(#so-s)"></circle><circle cx="290" cy="160" r="3" fill="#FFFFFF"></circle>
+      <circle cx="160" cy="80" r="74" fill="url(#so-burst)"></circle>
+      <g stroke="#EDE9FE" stroke-width="2.2" stroke-linecap="round" opacity="0.85">
+        <path d="M160 18v18"></path><path d="M160 124v18"></path><path d="M98 80h18"></path><path d="M204 80h18"></path>
+        <path d="M118 38l12 12"></path><path d="M190 110l12 12"></path><path d="M202 38l-12 12"></path><path d="M130 110l-12 12"></path>
+      </g>
+      <path d="M160 52l7 21h22l-18 13 7 21-18-13-18 13 7-21-18-13h22z" fill="#FFFFFF"></path>
+      <g opacity="0.95">
+        <circle cx="70" cy="40" r="3" fill="#5EEAD4"></circle><circle cx="250" cy="52" r="3.5" fill="#FCD34D"></circle><circle cx="232" cy="20" r="2.5" fill="#F9A8D4"></circle>
+        <circle cx="92" cy="96" r="2.5" fill="#FCD34D"></circle><circle cx="270" cy="96" r="2.5" fill="#5EEAD4"></circle><circle cx="46" cy="104" r="2" fill="#F9A8D4"></circle>
+        <rect x="104" y="20" width="6" height="6" rx="1.5" fill="#C4B5FD" transform="rotate(20 107 23)"></rect>
+        <rect x="214" y="86" width="6" height="6" rx="1.5" fill="#FDBA74" transform="rotate(-25 217 89)"></rect>
+      </g>
+    </svg>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <h1 style="margin: 0; font-family: Sora, Inter, sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.8px">You rode it out.</h1>
+      <p style="margin: 0; font-size: 16px; line-height: 1.5; color: rgba(238,240,250,0.85); max-width: 310px">That's the 15th star in your sky. Each urge you let pass makes the next one a little weaker.</p>
+    </div>
+
+    <div style="align-self: stretch; padding: 16px; border-radius: 24px; background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.13); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18); display: flex; align-items: flex-end; gap: 16px; text-align: left">
+      <div style="display: flex; align-items: flex-end; gap: 10px; height: 92px" aria-label="Urge strength went from 8 to 3">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><span style="font-family: Sora, Inter, sans-serif; font-size: 14px; font-weight: 700">8</span><span style="width: 30px; height: 64px; border-radius: 10px; background: linear-gradient(180deg, #F0ABFC, #C026D3)"></span></div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><span style="font-family: Sora, Inter, sans-serif; font-size: 14px; font-weight: 700">3</span><span style="width: 30px; height: 24px; border-radius: 10px; background: linear-gradient(180deg, #99F6E4, #14B8A6)"></span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px; flex: 1">
+        <span style="font-size: 15px; font-weight: 700">From 8 down to 3</span>
+        <span style="font-size: 13px; line-height: 1.4; color: rgba(238,240,250,0.75)">In 7 minutes, without acting on it. Saved to your progress.</span>
+      </div>
+    </div>
+
+    <div style="align-self: stretch; margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+      <a href="Home-Night.dc.html" style="height: 56px; border-radius: 999px; background: linear-gradient(135deg, #EDE9FE, #A78BFA 55%, #7C3AED); color: #1E0B4A; font-size: 16px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(139,92,246,0.55), inset 0 1px 0 rgba(255,255,255,0.7)">Back to my evening</a>
+      <a href="Coach-Night.dc.html" style="height: 50px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); color: #EEF0FA; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px">
+        <span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFFFFF, #DDD6FE 25%, #A78BFA 55%, #4C1D95)"></span>Tell Noor how it went</a>
+      <a href="SlipLog.dc.html" style="font-size: 14px; color: rgba(238,240,250,0.8); padding: 6px">It didn't pass this time</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var stars = [];
+    var seed = 101;
+    for (var i = 0; i < 36; i++) {
+      seed = (seed * 9301 + 49297) % 233280;
+      var x = Math.round((seed / 233280) * 386);
+      seed = (seed * 9301 + 49297) % 233280;
+      var y = Math.round((seed / 233280) * 830);
+      seed = (seed * 9301 + 49297) % 233280;
+      var r = 1 + Math.round((seed / 233280) * 15) / 10;
+      var o = 0.2 + Math.round((seed / 233280) * 50) / 100;
+      stars.push({ style: 'position: absolute; left: ' + x + 'px; top: ' + y + 'px; width: ' + r + 'px; height: ' + r + 'px; border-radius: 50%; background: #FFFFFF; opacity: ' + o });
+    }
+    return { stars: stars };
+  }
+}
+</script>
+</body>
+</html>

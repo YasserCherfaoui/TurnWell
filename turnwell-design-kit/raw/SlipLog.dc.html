@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Slip log sheet</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#FFFFFF}a:hover{color:#FFD08A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: Inter, sans-serif; color: #FFFFFF; background: linear-gradient(165deg, #1F1D5C 0%, #4A3A92 40%, #B5679B 72%, #F4A98A 100%)">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(14,10,40,0.45)"></div>
+
+  <section aria-label="Log a slip" style="position: absolute; left: 0; right: 0; top: 44px; bottom: 0; box-sizing: border-box; padding: 12px 18px 24px; border-radius: 34px 34px 0 0; background: linear-gradient(170deg, rgba(90,62,160,0.86), rgba(52,36,110,0.92)); border-top: 1px solid rgba(255,255,255,0.45); backdrop-filter: blur(30px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.55); display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+    <div aria-hidden="true" style="position: absolute; width: 220px; height: 220px; border-radius: 50%; background: #FF8A7A; filter: blur(80px); opacity: 0.25; top: -40px; right: -60px"></div>
+    <div style="width: 44px; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.5); align-self: center"></div>
+
+    <div style="display: flex; gap: 12px; align-items: center; position: relative">
+      <svg width="72" height="60" viewBox="0 0 72 60" role="img" aria-label="Illustration: a cloud passing in front of the sun">
+        <defs><radialGradient id="sl-sun" cx="0.38" cy="0.35" r="0.7"><stop offset="0" stop-color="#FFFBEF"></stop><stop offset="0.5" stop-color="#FFD08A"></stop><stop offset="1" stop-color="#F59A6A"></stop></radialGradient>
+        <radialGradient id="sl-gl" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFD08A" stop-opacity="0.7"></stop><stop offset="1" stop-color="#FFD08A" stop-opacity="0"></stop></radialGradient></defs>
+        <circle cx="44" cy="22" r="22" fill="url(#sl-gl)"></circle>
+        <circle cx="44" cy="22" r="12" fill="url(#sl-sun)"></circle>
+        <path d="M12 50h34a10 10 0 0 0 0-20 13 13 0 0 0-25 3 9 9 0 0 0-9 17z" fill="#E5E7EB"></path>
+        <path d="M18 38a9 9 0 0 1 8-6" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+      </svg>
+      <div style="display: flex; flex-direction: column; gap: 4px; flex: 1">
+        <h2 style="margin: 0; font-family: Sora, Inter, sans-serif; font-size: 21px; font-weight: 700; letter-spacing: -0.4px">That's okay.</h2>
+        <p style="margin: 0; font-size: 14px; line-height: 1.4; color: rgba(255,255,255,0.92)">Clouds pass. A slip is information, not failure. Everything here is optional.</p>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 18px; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.3); position: relative">
+      <span style="font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD08A" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>When</span>
+      <span style="font-size: 14.5px; font-weight: 500">Today, 23:40</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px; position: relative">
+      <span style="font-size: 14px; font-weight: 600">What set it off?</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <button aria-pressed="true" style="font-family: Inter, sans-serif; height: 38px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #FFD08A; background: rgba(255,208,138,0.25); color: #FFFFFF; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD08A" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Alone</button>
+        <button aria-pressed="true" style="font-family: Inter, sans-serif; height: 38px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #FFD08A; background: rgba(255,208,138,0.25); color: #FFFFFF; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD08A" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M11 18h2"></path></svg>Phone in bed</button>
+        <button aria-pressed="false" style="font-family: Inter, sans-serif; height: 38px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.10); color: #FFFFFF; font-size: 13.5px; display: flex; align-items: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg>Stress</button>
+        <button aria-pressed="false" style="font-family: Inter, sans-serif; height: 38px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.10); color: #FFFFFF; font-size: 13.5px; display: flex; align-items: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#99F6E4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12"></path><path d="M6 22h12"></path><path d="M7 2c0 6 10 6 10 10S7 16 7 22"></path></svg>Bored</button>
+        <button aria-pressed="false" style="font-family: Inter, sans-serif; height: 38px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.10); color: #FFFFFF; font-size: 13.5px; display: flex; align-items: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4B5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>Tired</button>
+        <button aria-pressed="false" style="font-family: Inter, sans-serif; height: 38px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.10); color: #FFFFFF; font-size: 13.5px; display: flex; align-items: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FDBA74" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h12v8H8l-5 4z"></path><path d="M15 9h6v8l-3-2h-6v-2"></path></svg>Argument</button>
+        <button style="font-family: Inter, sans-serif; height: 38px; padding: 0 12px; border-radius: 999px; border: 1px dashed rgba(255,255,255,0.6); background: transparent; color: #FFFFFF; font-size: 13.5px">+ Other</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px; position: relative">
+      <span style="font-size: 14px; font-weight: 600">Where were you?</span>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+        <button aria-pressed="true" style="font-family: Inter, sans-serif; height: 70px; border-radius: 18px; border: 1.5px solid #FFD08A; background: rgba(255,208,138,0.25); color: #FFFFFF; font-size: 12.5px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD08A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"></path><path d="M3 15h18"></path><path d="M7 10V7h4v3"></path><path d="M3 18v2"></path><path d="M21 18v2"></path></svg>Bedroom</button>
+        <button aria-pressed="false" style="font-family: Inter, sans-serif; height: 70px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.10); color: #FFFFFF; font-size: 12.5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>Home</button>
+        <button aria-pressed="false" style="font-family: Inter, sans-serif; height: 70px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.10); color: #FFFFFF; font-size: 12.5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M9 7V4h6v3"></path></svg>Work</button>
+        <button aria-pressed="false" style="font-family: Inter, sans-serif; height: 70px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.10); color: #FFFFFF; font-size: 12.5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Out</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px; position: relative">
+      <span style="font-size: 14px; font-weight: 600">How were you feeling before?</span>
+      <div style="display: flex; justify-content: space-between">
+        <button aria-label="Feeling 1, very heavy" style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: linear-gradient(135deg, #4C3B8F, #34296E); color: #FFFFFF; font-family: Inter, sans-serif; font-weight: 600">1</button>
+        <button aria-label="Feeling 2, selected" style="width: 50px; height: 50px; border-radius: 50%; border: 2.5px solid #FFFFFF; background: linear-gradient(135deg, #6B4CA8, #4C3B8F); color: #FFFFFF; font-family: Inter, sans-serif; font-weight: 700; box-shadow: 0 0 0 4px rgba(255,208,138,0.35)">2</button>
+        <button aria-label="Feeling 3" style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: linear-gradient(135deg, #A061A8, #7A4FA0); color: #FFFFFF; font-family: Inter, sans-serif; font-weight: 600">3</button>
+        <button aria-label="Feeling 4" style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: linear-gradient(135deg, #F5A07A, #D9748F); color: #FFFFFF; font-family: Inter, sans-serif; font-weight: 600">4</button>
+        <button aria-label="Feeling 5, very light" style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: linear-gradient(135deg, #FFD08A, #F5A07A); color: #3B2106; font-family: Inter, sans-serif; font-weight: 700">5</button>
+      </div>
+    </div>
+
+    <div style="margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative">
+      <a href="Coach-Dawn.dc.html" style="height: 54px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.45); background: rgba(255,255,255,0.12); color: #FFFFFF; font-size: 14.5px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px">
+        <span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFF6E0, #FFC985 30%, #FF8E8E 60%, #9F7AEA)"></span>Talk to Noor</a>
+      <a href="Home-Dawn.dc.html" style="height: 54px; border-radius: 999px; background: linear-gradient(135deg, #FFE7B8, #F5B971 55%, #F59A6A); color: #3B2106; font-size: 15px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 26px rgba(245,140,90,0.5), inset 0 1px 0 rgba(255,255,255,0.7)">Save</a>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

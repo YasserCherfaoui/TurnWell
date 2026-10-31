@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crisis card</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#3B1F8F}a:hover{color:#14082E}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: Inter, sans-serif; color: #EEF0FA; background: linear-gradient(170deg, #050816 0%, #0B1230 45%, #1A1446 80%, #2A1A5E 100%)">
+  <div aria-hidden="true" style="position: absolute; width: 320px; height: 240px; border-radius: 50%; background: #DB2777; filter: blur(100px); opacity: 0.3; top: -20px; left: 35px"></div>
+  <div aria-hidden="true" style="position: absolute; width: 260px; height: 220px; border-radius: 50%; background: #7C3AED; filter: blur(90px); opacity: 0.35; bottom: 40px; right: -60px"></div>
+
+  <div style="position: absolute; inset: 0; box-sizing: border-box; padding: 50px 16px 22px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: center">
+      <svg width="120" height="84" viewBox="0 0 120 84" role="img" aria-label="Illustration: a heart glowing softly between two open hands">
+        <defs>
+          <radialGradient id="cr-g" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FBCFE8" stop-opacity="0.9"></stop><stop offset="1" stop-color="#FBCFE8" stop-opacity="0"></stop></radialGradient>
+          <linearGradient id="cr-h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1F7"></stop><stop offset="1" stop-color="#F472B6"></stop></linearGradient>
+        </defs>
+        <circle cx="60" cy="38" r="36" fill="url(#cr-g)"></circle>
+        <path d="M60 54c-12-8-18-14-18-21a9 9 0 0 1 18-3 9 9 0 0 1 18 3c0 7-6 13-18 21z" fill="url(#cr-h)"></path>
+        <path d="M14 60c8 0 14 4 20 10h22" fill="none" stroke="#EEF0FA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"></path>
+        <path d="M106 60c-8 0-14 4-20 10H64" fill="none" stroke="#EEF0FA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"></path>
+      </svg>
+    </div>
+
+    <section aria-labelledby="crisis-title" style="background: #FBFAFF; color: #14082E; border-radius: 30px; padding: 22px 18px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 24px 60px rgba(0,0,0,0.45)">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h1 id="crisis-title" style="margin: 0; font-family: Sora, Inter, sans-serif; font-size: 23px; font-weight: 700; letter-spacing: -0.4px; line-height: 1.25">You don't have to go through this alone.</h1>
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A3550">What you're feeling matters. Talking to a real person right now can help.</p>
+      </div>
+
+      <a href="#" style="min-height: 64px; border-radius: 20px; background: linear-gradient(135deg, #1E1257, #14082E); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; gap: 14px; padding: 0 14px">
+        <span style="width: 40px; height: 40px; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14082E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"></path></svg></span>
+        <div style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 700">Call emergency services</span><span style="font-size: 12.5px; color: rgba(255,255,255,0.88)">[Emergency number for the user's country]</span></div>
+      </a>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 20px; background: #F1EDFC">
+        <div style="display: flex; gap: 12px; align-items: center">
+          <span style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #8B5CF6, #5B3FD1); display: flex; align-items: center; justify-content: center; flex: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg></span>
+          <div style="display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 700">[Local support line name]</span><span style="font-size: 12.5px; color: #3A3550">Free and confidential · [hours] · [languages]</span></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+          <a href="#" style="height: 46px; border-radius: 999px; background: #5B3FD1; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center">Call</a>
+          <a href="#" style="height: 46px; border-radius: 999px; border: 1.5px solid #5B3FD1; color: #3B1F8F; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center">Text or chat</a>
+        </div>
+      </div>
+
+      <a href="#" style="min-height: 58px; border-radius: 20px; border: 1.5px solid #E9D5F5; background: #FDF2F8; color: #14082E; text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 0 14px">
+        <span style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #F472B6, #BE185D); display: flex; align-items: center; justify-content: center; flex: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.7 7.1L3 21l1.9-6.3A8 8 0 1 1 21 12z"></path></svg></span>
+        <div style="display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 700">Message Karim</span><span style="font-size: 12.5px; color: #3A3550">Sends the message you wrote. Only when you tap.</span></div>
+      </a>
+    </section>
+
+    <div style="padding: 14px; border-radius: 22px; background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.14); display: flex; gap: 12px; align-items: center">
+      <span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 50%; flex: none; background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #DDD6FE 22%, #A78BFA 50%, #4C1D95 90%); box-shadow: 0 0 16px rgba(167,139,250,0.7)"></span>
+      <p style="margin: 0; font-size: 14.5px; line-height: 1.5">I'm here and not going anywhere. We can keep talking while you reach out.</p>
+    </div>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+      <a href="Coach-Night.dc.html" style="height: 54px; border-radius: 999px; background: linear-gradient(135deg, #EDE9FE, #A78BFA 55%, #7C3AED); color: #1E0B4A; font-size: 16px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 26px rgba(139,92,246,0.5)">Keep talking with Noor</a>
+      <p style="margin: 0; text-align: center; font-size: 12.5px; color: rgba(238,240,250,0.72)">Noor is an AI coach, not a crisis service.</p>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

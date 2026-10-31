@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SOS — pick a tool</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#EEF0FA}a:hover{color:#C4B5FD}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: Inter, sans-serif; color: #EEF0FA; background: linear-gradient(170deg, #050816 0%, #0B1230 45%, #1A1446 80%, #2A1A5E 100%)">
+  <div aria-hidden="true" style="position: absolute; width: 320px; height: 260px; border-radius: 50%; background: #7C3AED; filter: blur(90px); opacity: 0.45; top: -40px; left: 35px"></div>
+  <div aria-hidden="true" style="position: absolute; width: 240px; height: 200px; border-radius: 50%; background: #0EA5E9; filter: blur(80px); opacity: 0.22; bottom: 60px; right: -80px"></div>
+  <div aria-hidden="true" style="position: absolute; inset: 0">
+    <sc-for list="{{ stars }}" as="s" hint-placeholder-count="30">
+      <span style="{{ s.style }}"></span>
+    </sc-for>
+  </div>
+
+  <div style="position: absolute; inset: 0; box-sizing: border-box; padding: 52px 18px 24px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <a href="Home-Night.dc.html" aria-label="Close SOS" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EEF0FA" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
+      </a>
+      <span style="font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 6px 12px; border-radius: 999px; background: rgba(167,139,250,0.16); color: #DDD6FE">SOS</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 14px">
+      <svg width="84" height="84" viewBox="0 0 84 84" role="img" aria-label="Illustration: a calm wave inside glowing rings">
+        <defs><radialGradient id="st-c" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#F5F3FF"></stop><stop offset="0.45" stop-color="#C4B5FD"></stop><stop offset="1" stop-color="#6D28D9"></stop></radialGradient></defs>
+        <circle cx="42" cy="42" r="40" fill="none" stroke="#A78BFA" stroke-opacity="0.25" stroke-width="1.5"></circle>
+        <circle cx="42" cy="42" r="31" fill="none" stroke="#A78BFA" stroke-opacity="0.45" stroke-width="1.5"></circle>
+        <circle cx="42" cy="42" r="22" fill="url(#st-c)"></circle>
+        <path d="M27 44c3 0 3-5 6-5s3 9 6 9 3-9 6-9 3 5 6 5" fill="none" stroke="#1E0B4A" stroke-width="2.6" stroke-linecap="round"></path>
+      </svg>
+      <div style="display: flex; flex-direction: column; gap: 4px; flex: 1">
+        <h1 style="margin: 0; font-family: Sora, Inter, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2">You reached out. That takes strength.</h1>
+      </div>
+    </div>
+    <p style="margin: -4px 0 0; font-size: 14.5px; line-height: 1.45; color: rgba(238,240,250,0.8)">Pick one thing for the next few minutes. The urge will pass.</p>
+
+    <div style="padding: 14px 16px; border-radius: 24px; background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.13); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18); display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><label for="sos-int" style="font-size: 14px; font-weight: 600">How strong is it?</label><span style="font-family: Sora, Inter, sans-serif; font-size: 20px; font-weight: 700; color: #C4B5FD">8<span style="font-size: 13px; color: rgba(238,240,250,0.6)"> / 10</span></span></div>
+      <div aria-hidden="true" style="position: relative; height: 10px; border-radius: 999px; background: linear-gradient(90deg, #2DD4BF, #818CF8 50%, #C026D3)">
+        <span style="position: absolute; left: 75%; top: -6px; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(192,38,211,0.35), 0 0 14px rgba(255,255,255,0.7)"></span>
+      </div>
+      <input id="sos-int" type="range" min="1" max="10" value="8" style="position: absolute; width: 1px; height: 1px; opacity: 0">
+      <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: rgba(238,240,250,0.65)"><span>Mild</span><span>Overwhelming</span></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 9px">
+      <a href="SOS-RideUrge.dc.html" style="text-decoration: none; color: #EEF0FA; padding: 14px; border-radius: 22px; background: linear-gradient(135deg, rgba(99,102,241,0.38), rgba(124,58,237,0.26)); border: 1.5px solid rgba(165,180,252,0.65); box-shadow: 0 10px 26px rgba(99,102,241,0.3); display: flex; gap: 14px; align-items: center">
+        <span style="width: 46px; height: 46px; border-radius: 15px; background: linear-gradient(135deg, #818CF8, #7C3AED); box-shadow: 0 0 18px rgba(129,140,248,0.6); display: flex; align-items: center; justify-content: center; flex: none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 14c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 5 3"></path><path d="M2 19c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 5 3"></path><path d="M12 3v5"></path><path d="M9.5 5.5L12 3l2.5 2.5"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 2px; flex: 1"><span style="font-size: 16px; font-weight: 700">Ride the urge</span><span style="font-size: 12.5px; color: rgba(238,240,250,0.8)">10 min · Noor talks you through it</span></div>
+        <span style="font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 999px; background: linear-gradient(135deg, #DDD6FE, #A78BFA); color: #1E0B4A">BEST NOW</span>
+      </a>
+      <a href="#" style="text-decoration: none; color: #EEF0FA; padding: 14px; border-radius: 22px; background: linear-gradient(135deg, rgba(45,212,191,0.18), rgba(255,255,255,0.03)); border: 1px solid rgba(94,234,212,0.3); display: flex; gap: 14px; align-items: center">
+        <span style="width: 46px; height: 46px; border-radius: 15px; background: linear-gradient(135deg, #2DD4BF, #0891B2); box-shadow: 0 0 16px rgba(45,212,191,0.5); display: flex; align-items: center; justify-content: center; flex: none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3"></path><path d="M3 12h16a3 3 0 1 1-3 3"></path><path d="M3 16h6"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 700">Breathe</span><span style="font-size: 12.5px; color: rgba(238,240,250,0.8)">2 min · in for 4, out for 6</span></div>
+      </a>
+      <a href="#" style="text-decoration: none; color: #EEF0FA; padding: 14px; border-radius: 22px; background: linear-gradient(135deg, rgba(251,191,36,0.16), rgba(255,255,255,0.03)); border: 1px solid rgba(253,230,138,0.28); display: flex; gap: 14px; align-items: center">
+        <span style="width: 46px; height: 46px; border-radius: 15px; background: linear-gradient(135deg, #FBBF24, #EA580C); box-shadow: 0 0 16px rgba(251,191,36,0.45); display: flex; align-items: center; justify-content: center; flex: none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="1.5" fill="#FFFFFF"></circle><path d="M12 3v2"></path><path d="M12 19v2"></path><path d="M3 12h2"></path><path d="M19 12h2"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 700">Dhikr</span><span style="font-size: 12.5px; color: rgba(238,240,250,0.8)">5 min · guided counter</span></div>
+      </a>
+      <a href="#" style="text-decoration: none; color: #EEF0FA; padding: 14px; border-radius: 22px; background: linear-gradient(135deg, rgba(251,113,133,0.16), rgba(255,255,255,0.03)); border: 1px solid rgba(253,164,175,0.28); display: flex; gap: 14px; align-items: center">
+        <span style="width: 46px; height: 46px; border-radius: 15px; background: linear-gradient(135deg, #FB7185, #E11D48); box-shadow: 0 0 16px rgba(251,113,133,0.45); display: flex; align-items: center; justify-content: center; flex: none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4a1.5 1.5 0 1 0 0-.01"></path><path d="M9 20l2-6 3 3v4"></path><path d="M7 11l3-3 4 1 2 3h3"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 700">Change the scene</span><span style="font-size: 12.5px; color: rgba(238,240,250,0.8)">Leave the room, cold water, a short walk</span></div>
+      </a>
+    </div>
+
+    <a href="Crisis.dc.html" style="margin-top: auto; text-decoration: none; color: #EEF0FA; height: 48px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.05); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"></path></svg>I'm not safe right now</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var stars = [];
+    var seed = 53;
+    for (var i = 0; i < 30; i++) {
+      seed = (seed * 9301 + 49297) % 233280;
+      var x = Math.round((seed / 233280) * 386);
+      seed = (seed * 9301 + 49297) % 233280;
+      var y = Math.round((seed / 233280) * 830);
+      seed = (seed * 9301 + 49297) % 233280;
+      var r = 1 + Math.round((seed / 233280) * 15) / 10;
+      var o = 0.2 + Math.round((seed / 233280) * 50) / 100;
+      stars.push({ style: 'position: absolute; left: ' + x + 'px; top: ' + y + 'px; width: ' + r + 'px; height: ' + r + 'px; border-radius: 50%; background: #FFFFFF; opacity: ' + o });
+    }
+    return { stars: stars };
+  }
+}
+</script>
+</body>
+</html>

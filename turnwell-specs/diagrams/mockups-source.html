@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TurnWell mockups</title>
+<style>
+  :root {
+    --bg1:#2B2D6E; --bg2:#6C5B9E; --bg3:#F7B59B;
+    --accent:#F5B971; --onAccent:#2B1A05;
+    --glass:rgba(255,255,255,.18); --border:rgba(255,255,255,.35); --hi:rgba(255,255,255,.55);
+    --t1:#fff; --t2:rgba(255,255,255,.72); --slip:#9CA3AF; --ok:#86EFAC;
+    --blob1:#F7B59B; --blob2:#8B7CC8; --blob3:#F5B971;
+  }
+  body.night .nav { background:var(--glass) !important; }
+  body.night {
+    --bg1:#070B1A; --bg2:#0E1530; --bg3:#121A3A;
+    --accent:#A78BFA; --onAccent:#14082E;
+    --glass:rgba(11,16,32,.45); --border:rgba(255,255,255,.12); --hi:rgba(255,255,255,.18);
+    --t1:#E8EAF6; --t2:rgba(232,234,246,.6); --slip:#6B7280; --ok:#6EE7B7;
+    --blob1:#3B2A6B; --blob2:#1E3A6B; --blob3:#4C1D95;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family: Inter, sans-serif; background:#ECEAF2; padding:40px; }
+  body.night { background:#05070F; }
+  h1 { font-size:22px; font-weight:600; color:#1b1b2b; margin-bottom:6px; }
+  body.night h1 { color:#E8EAF6; }
+  .sub { font-size:14px; color:#555; margin-bottom:28px; }
+  body.night .sub { color:#9aa0c0; }
+  .row { display:flex; gap:32px; }
+  .phone-wrap { display:flex; flex-direction:column; gap:12px; align-items:center; }
+  .label { font-size:14px; font-weight:600; color:#333; }
+  body.night .label { color:#c9cce6; }
+  .phone { width:360px; height:760px; border-radius:44px; overflow:hidden; position:relative;
+    background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%);
+    box-shadow:0 0 0 10px #111, 0 20px 50px rgba(0,0,0,.25); color:var(--t1); }
+  .blob { position:absolute; border-radius:50%; filter:blur(50px); opacity:.75; }
+  .b1 { width:260px; height:260px; background:var(--blob1); bottom:-60px; left:-60px; }
+  .b2 { width:220px; height:220px; background:var(--blob2); top:120px; right:-80px; }
+  .b3 { width:160px; height:160px; background:var(--blob3); top:-40px; left:40px; opacity:.45; }
+  .screen { position:absolute; inset:0; padding:54px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+  .status { position:absolute; top:16px; left:28px; right:28px; display:flex; justify-content:space-between; font-size:13px; font-weight:600; }
+  .glass { background:var(--glass); border:1px solid var(--border); border-radius:24px; padding:16px;
+    backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    box-shadow: inset 0 1px 0 var(--hi); position:relative; }
+  .title { font-size:22px; font-weight:600; }
+  .muted { color:var(--t2); font-size:13px; }
+  .row2 { display:flex; gap:12px; }
+  .row2 .glass { flex:1; }
+  .h { font-size:15px; font-weight:600; }
+  .big { font-size:34px; font-weight:600; letter-spacing:-.5px; }
+  .ring { width:76px; height:76px; border-radius:50%; background:conic-gradient(var(--accent) 0 78%, var(--border) 78% 100%);
+    display:grid; place-items:center; flex:none; }
+  .ring::after { content:""; width:58px; height:58px; border-radius:50%; background:var(--bg1); opacity:.85; grid-area:1/1; }
+  .ring span { grid-area:1/1; z-index:1; font-weight:600; font-size:17px; }
+  .item { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid var(--border); font-size:15px; }
+  .item:first-of-type { border-top:none; }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--accent); display:inline-block; margin-right:8px; }
+  .btn { background:var(--accent); color:var(--onAccent); border-radius:999px; padding:8px 14px; font-size:13px; font-weight:600; }
+  .btn.big { padding:14px; text-align:center; font-size:16px; }
+  .btn.ghost { background:var(--glass); color:var(--t1); border:1px solid var(--border); }
+  .ok { color:var(--ok); font-weight:600; font-size:13px; }
+  .coach { display:flex; gap:10px; align-items:flex-start; }
+  .avatar { width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--blob2)); display:grid; place-items:center; font-weight:700; color:var(--onAccent); flex:none; font-size:14px; }
+  .sos { position:absolute; right:22px; bottom:104px; width:64px; height:64px; border-radius:50%; background:var(--accent); color:var(--onAccent);
+    display:grid; place-items:center; font-weight:700; box-shadow:0 0 28px var(--accent); }
+  .nav { background:rgba(43,45,110,.38) !important; position:absolute; left:16px; right:16px; bottom:16px; height:64px; border-radius:28px; display:flex; justify-content:space-around; align-items:center; padding:0 8px; }
+  .nav div { font-size:11px; color:var(--t2); text-align:center; }
+  .nav .on { color:var(--onAccent); background:var(--accent); border-radius:999px; padding:6px 12px; font-weight:600; }
+  .bubble { padding:12px 14px; border-radius:20px; font-size:14.5px; line-height:1.45; max-width:82%; }
+  .bubble.c { background:var(--glass); border:1px solid var(--border); backdrop-filter:blur(24px); align-self:flex-start; border-bottom-left-radius:6px; }
+  .bubble.u { background:color-mix(in srgb, var(--accent) 28%, transparent); align-self:flex-end; border-bottom-right-radius:6px; border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+  .input { position:absolute; left:16px; right:16px; bottom:20px; border-radius:999px; padding:14px 18px; display:flex; justify-content:space-between; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { border:1px solid var(--border); background:var(--glass); border-radius:999px; padding:8px 12px; font-size:13px; }
+  .chip.sel { border-color:var(--accent); background:color-mix(in srgb, var(--accent) 18%, transparent); }
+  .timer { width:220px; height:220px; border-radius:50%; margin:10px auto; display:grid; place-items:center;
+    background:conic-gradient(var(--accent) 0 62%, var(--border) 62% 100%); }
+  .timer::after { content:""; width:196px; height:196px; border-radius:50%; background:var(--bg2); grid-area:1/1; opacity:.9; }
+  .timer div { grid-area:1/1; z-index:1; text-align:center; }
+  .wave { height:46px; display:flex; align-items:center; gap:4px; justify-content:center; }
+  .wave i { width:6px; border-radius:3px; background:var(--accent); opacity:.8; }
+  .sheet { position:absolute; left:0; right:0; bottom:0; border-radius:32px 32px 0 0; padding:20px 18px 28px; }
+  .handle { width:40px; height:5px; background:var(--border); border-radius:3px; margin:0 auto 14px; }
+  .moods { display:flex; justify-content:space-between; margin:10px 0 16px; }
+  .moods span { width:44px; height:44px; border-radius:50%; border:1px solid var(--border); display:grid; place-items:center; font-size:12px; color:var(--t2); }
+  .moods span.sel { border:2px solid var(--accent); color:var(--t1); }
+  .seg { display:flex; gap:8px; margin:12px 0; }
+  .seg div { flex:1; text-align:center; padding:12px 0; border-radius:16px; border:1px solid var(--border); font-size:14px; font-weight:600; background:var(--glass); }
+  .seg .clean { border-color:var(--accent); background:color-mix(in srgb,var(--accent) 22%,transparent); }
+  .seg .slip { color:var(--slip); }
+  .post .meta { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .pav { width:28px; height:28px; border-radius:8px; background:conic-gradient(from 45deg,#7dd3fc,#a78bfa,#f5b971,#7dd3fc); }
+  .react { display:flex; gap:14px; margin-top:10px; font-size:12.5px; color:var(--t2); }
+  .cw { filter:blur(5px); }
+  .dim { position:absolute; inset:0; background:rgba(5,8,20,.35); }
+</style>
+</head>
+<body class="__THEME__">
+<h1>TurnWell — __TITLE__</h1>
+<div class="sub">Liquid glass reference mockups · v1 screens · illustrative content</div>
+<div class="row">
+
+<!-- HOME -->
+<div class="phone-wrap"><div class="label">Home</div>
+<div class="phone"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="status"><span>21:12</span><span>●●● ▮</span></div>
+<div class="screen">
+  <div><div class="title">Good evening</div><div class="muted">Thursday, 20 November</div></div>
+  <div class="glass" style="display:flex;gap:16px;align-items:center">
+    <div class="ring"><span>78%</span></div>
+    <div><div class="h">clean days · 30 days</div><div class="muted">up from 64% last month</div></div>
+  </div>
+  <div class="glass">
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span class="h">Today's check-in</span><span class="muted">21:30</span></div>
+    <div class="item"><span><i class="dot"></i>Pornography</span><span class="btn">Check in</span></div>
+    <div class="item"><span><i class="dot"></i>Smoking</span><span class="ok">✓ Clean</span></div>
+  </div>
+  <div class="glass"><div class="coach"><div class="avatar">N</div><div>
+    <div class="h">Noor</div>
+    <div style="font-size:14px;line-height:1.45;margin-top:2px">Evenings have been hard lately. Want to plan tonight together?</div>
+    <div style="margin-top:10px;text-align:right"><span class="btn ghost">Reply →</span></div></div></div></div>
+  <div class="glass" style="display:flex;justify-content:space-between;padding:12px 16px"><span class="muted"><b style="color:var(--t1)">4</b> urges passed this week</span><span class="muted"><b style="color:var(--t1)">3/4</b> plan steps</span></div>
+</div>
+<div class="sos">SOS</div>
+<div class="glass nav"><div class="on">Home</div><div>Coach</div><div>Progress</div><div>Community</div><div>Me</div></div>
+</div></div>
+
+<!-- CHECK-IN SHEET -->
+<div class="phone-wrap"><div class="label">Check-in sheet</div>
+<div class="phone"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="status"><span>21:31</span><span>●●● ▮</span></div>
+<div class="screen"><div class="title">Good evening</div></div>
+<div class="dim"></div>
+<div class="glass sheet">
+  <div class="handle"></div>
+  <div class="title" style="font-size:20px">How did today go?</div>
+  <div class="muted" style="margin-top:4px">Pornography · Sins mode</div>
+  <div class="seg"><div class="clean">Clean</div><div>Partly</div><div class="slip">Slipped</div></div>
+  <div class="h" style="margin-top:6px">Mood</div>
+  <div class="moods"><span>1</span><span>2</span><span>3</span><span class="sel">4</span><span>5</span></div>
+  <div class="glass" style="border-radius:16px;padding:12px;font-size:14px;color:var(--t2)">Add a note (optional, encrypted)</div>
+  <div class="muted" style="margin:12px 0 14px">🔒 Only you can read this.</div>
+  <div class="btn big">Save check-in</div>
+</div>
+</div></div>
+
+<!-- COACH -->
+<div class="phone-wrap"><div class="label">Coach chat</div>
+<div class="phone"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="status"><span>22:40</span><span>●●● ▮</span></div>
+<div class="screen">
+  <div class="glass" style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:999px">
+    <div class="avatar">N</div><div><div class="h">Noor</div><div class="muted" style="font-size:12px">your coach · 11 messages left today</div></div></div>
+  <div class="bubble c">You said nights alone are the hardest. It's 22:40 now. How are you feeling?</div>
+  <div class="bubble u">Restless. I can feel the urge starting.</div>
+  <div class="bubble c">Thank you for telling me. That takes honesty. Urges rise and fall like a wave, usually within 15 minutes. Want to ride this one out together?</div>
+  <div class="chips"><span class="chip sel">Ride the urge (10 min)</span><span class="chip">Leave the room</span><span class="chip">Make wudu + dhikr</span></div>
+</div>
+<div class="glass input"><span class="muted">Write to Noor…</span><span style="color:var(--accent)">●</span></div>
+</div></div>
+
+<!-- SOS -->
+<div class="phone-wrap"><div class="label">SOS · ride the urge</div>
+<div class="phone"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="status"><span>22:44</span><span>●●● ▮</span></div>
+<div class="screen" style="text-align:center">
+  <div style="display:flex;justify-content:space-between"><span class="muted">✕ Close</span><span class="muted">Urge 8/10</span></div>
+  <div class="title" style="margin-top:8px">Ride the urge</div>
+  <div class="muted">Notice it. Don't fight it. Don't act on it.</div>
+  <div class="timer"><div><div class="big">06:12</div><div class="muted">of 10:00</div></div></div>
+  <div class="wave"><i style="height:14px"></i><i style="height:26px"></i><i style="height:40px"></i><i style="height:30px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:8px"></i></div>
+  <div class="glass" style="text-align:left"><div class="coach"><div class="avatar">N</div>
+    <div style="font-size:14px;line-height:1.45">Breathe in for 4… out for 6. The wave is already past its peak.</div></div></div>
+  <div class="row2"><div class="btn ghost big" style="flex:1">Breathe</div><div class="btn ghost big" style="flex:1">Dhikr</div></div>
+  <div class="btn big">The urge passed</div>
+</div>
+</div></div>
+
+<!-- COMMUNITY -->
+<div class="phone-wrap"><div class="label">Community</div>
+<div class="phone"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="status"><span>20:05</span><span>●●● ▮</span></div>
+<div class="screen">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div class="title">Community</div><span class="btn">Share</span></div>
+  <div class="chips"><span class="chip sel">People like me</span><span class="chip">Public</span><span class="chip">Brothers only</span></div>
+  <div class="glass post"><div class="meta"><div class="pav"></div><span class="h">QuietCedar42</span><span class="muted">· 2h</span></div>
+    <div style="font-size:14.5px;line-height:1.45">Day 12. Tonight is the first night I feel like I can actually do this. Thank you all.</div>
+    <div class="react"><span>♡ Support 24</span><span>◎ Same here 9</span><span>✦ Praying 15</span><span>↩ 6</span></div></div>
+  <div class="glass post"><div class="meta"><div class="pav" style="filter:hue-rotate(120deg)"></div><span class="h">SoftRiver07</span><span class="muted">· 5h · content warning</span></div>
+    <div class="cw" style="font-size:14.5px;line-height:1.45">I slipped again last night after three weeks and I don't know how to stop the guilt.</div>
+    <div class="muted" style="margin-top:8px">Tap to show</div></div>
+  <div class="glass post"><div class="meta"><div class="pav" style="filter:hue-rotate(220deg)"></div><span class="h">NorthLantern</span><span class="muted">· 1d</span></div>
+    <div style="font-size:14.5px;line-height:1.45">What helped me most with smoking: changing my morning route so I don't pass the kiosk.</div></div>
+</div>
+<div class="glass nav"><div>Home</div><div>Coach</div><div>Progress</div><div class="on">Community</div><div>Me</div></div>
+</div></div>
+
+</div>
+</body>
+</html>

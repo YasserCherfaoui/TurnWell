@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign up</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#FFFFFF}a:hover{color:#FFD08A}
+input::placeholder{color:rgba(255,255,255,0.7)}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; font-family: Inter, sans-serif; color: #FFFFFF; background: linear-gradient(165deg, #1F1D5C 0%, #4A3A92 40%, #B5679B 72%, #F4A98A 100%)">
+  <div aria-hidden="true" style="position: absolute; width: 260px; height: 260px; border-radius: 50%; background: #9F7AEA; filter: blur(70px); opacity: 0.7; top: -70px; left: -70px"></div>
+  <div aria-hidden="true" style="position: absolute; width: 220px; height: 220px; border-radius: 50%; background: #FF8A7A; filter: blur(70px); opacity: 0.5; top: 300px; right: -90px"></div>
+  <div aria-hidden="true" style="position: absolute; width: 300px; height: 300px; border-radius: 50%; background: #FFC46B; filter: blur(80px); opacity: 0.5; bottom: -120px; left: -40px"></div>
+
+  <div style="position: absolute; inset: 0; box-sizing: border-box; padding: 54px 20px 28px; display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <a href="01-Welcome.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.10)); border: 1px solid rgba(255,255,255,0.4); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      </a>
+      <svg width="86" height="86" viewBox="0 0 86 86" role="img" aria-label="Illustration: a glass shield with a keyhole">
+        <defs>
+          <linearGradient id="su-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"></stop><stop offset="1" stop-color="#FFFFFF" stop-opacity="0.08"></stop></linearGradient>
+          <radialGradient id="su-gl" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFD08A" stop-opacity="0.8"></stop><stop offset="1" stop-color="#FFD08A" stop-opacity="0"></stop></radialGradient>
+        </defs>
+        <circle cx="43" cy="44" r="40" fill="url(#su-gl)"></circle>
+        <path d="M43 10l26 10v18c0 17-11 30-26 37-15-7-26-20-26-37V20z" fill="url(#su-sh)" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="1.5"></path>
+        <circle cx="43" cy="38" r="7" fill="#3B2106"></circle>
+        <path d="M40 42h6l2 14h-10z" fill="#3B2106"></path>
+        <path d="M27 24l12-5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.8"></path>
+      </svg>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h1 style="margin: 0; font-family: Sora, Inter, sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.7px">Create your account</h1>
+      <p style="margin: 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,0.9)">Your email is only for signing in. Nobody in TurnWell will ever see it.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <button style="font-family: Inter, sans-serif; height: 54px; border-radius: 18px; border: none; background: #FFFFFF; color: #1B1A2E; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px rgba(30,20,80,0.25)">
+        <span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 6px; background: #1B1A2E"></span>Apple</button>
+      <button style="font-family: Inter, sans-serif; height: 54px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.45); background: linear-gradient(160deg, rgba(255,255,255,0.30), rgba(255,255,255,0.10)); color: #FFFFFF; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.6)">
+        <span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF"></span>Google</button>
+    </div>
+    <span style="margin-top: -10px; font-size: 11.5px; color: rgba(255,255,255,0.75); text-align: center">Placeholders: use the official Apple and Google sign-in buttons in the app</span>
+
+    <div style="display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.85); font-size: 13px">
+      <div style="flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5))"></div><span>or with email</span><div style="flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0.5), transparent)"></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 26px; background: linear-gradient(160deg, rgba(255,255,255,0.24), rgba(60,40,120,0.24)); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(24px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 12px 30px rgba(30,20,80,0.2)">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="su-email" style="font-size: 13px; font-weight: 600">Email</label>
+        <div style="display: flex; align-items: center; gap: 10px; height: 50px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.12); padding: 0 14px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+          <input id="su-email" type="email" placeholder="you@example.com" style="font-family: Inter, sans-serif; flex: 1; min-width: 0; border: none; background: transparent; color: #FFFFFF; font-size: 15px; outline: none">
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="su-pass" style="font-size: 13px; font-weight: 600">Password</label>
+        <div style="display: flex; align-items: center; gap: 10px; height: 50px; border-radius: 16px; border: 1.5px solid #FFD08A; background: rgba(255,255,255,0.12); padding: 0 14px; box-shadow: 0 0 0 4px rgba(255,208,138,0.18)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"></circle><path d="M10.8 12.2L20 3"></path><path d="M17 6l3 3"></path></svg>
+          <input id="su-pass" type="password" value="turnwell2026" style="font-family: Inter, sans-serif; flex: 1; min-width: 0; border: none; background: transparent; color: #FFFFFF; font-size: 15px; outline: none">
+        </div>
+        <div style="display: flex; gap: 4px; align-items: center">
+          <span style="flex: 1; height: 4px; border-radius: 2px; background: #86EFAC"></span><span style="flex: 1; height: 4px; border-radius: 2px; background: #86EFAC"></span><span style="flex: 1; height: 4px; border-radius: 2px; background: #86EFAC"></span><span style="flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.3)"></span>
+          <span style="font-size: 12px; margin-left: 6px">Strong</span>
+        </div>
+      </div>
+      <label for="su-age" style="display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.4">
+        <input id="su-age" type="checkbox" checked style="width: 22px; height: 22px; margin: 0; accent-color: #F5B971; flex: none">
+        <span>I'm 18 or older and accept the <a href="#">terms</a> and <a href="#">privacy policy</a>.</span>
+      </label>
+    </div>
+
+    <a href="03-LockSetup.dc.html" style="margin-top: auto; height: 56px; border-radius: 999px; background: linear-gradient(135deg, #FFE7B8, #F5B971 55%, #F59A6A); color: #3B2106; font-size: 16px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 26px rgba(245,140,90,0.55), inset 0 1px 0 rgba(255,255,255,0.7)">Create account
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B2106" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
