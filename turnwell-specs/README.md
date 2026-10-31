@@ -39,7 +39,7 @@ This folder is written to be read by an AI IDE (Cursor, Windsurf, Claude Code, C
 
 AI prompts: [prompts/README.md](prompts/README.md). Rendered diagrams and screen mockups: [diagrams/](diagrams/).
 
-## v1 build order (matches the MVP build plan, start Mon 2 Nov 2026)
+## v1 build order (matches the [MVP build plan](../MVP.md), start Mon 2 Nov 2026)
 
 | Week | Build | Modules |
 | --- | --- | --- |

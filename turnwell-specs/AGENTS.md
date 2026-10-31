@@ -84,4 +84,4 @@ diagrams/                  ← rendered SVG of every Mermaid diagram (for humans
 3. Use the exact endpoint paths, field names, enum values and error codes from the specs.
 4. When something is ambiguous, check the **Open questions** section of the module; if not listed, choose the
    simplest option that respects section 3 and leave a `// SPEC-QUESTION:` comment.
-5. Build order for v1 is in `README.md` (matches the MVP build plan).
+5. Build order for v1 is in `README.md` (matches the [MVP build plan](../MVP.md)).

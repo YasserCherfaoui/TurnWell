@@ -13,7 +13,7 @@ TurnWell is a private, AI-coached app (18+, global) that helps people quit bad h
 - **Stack:** Flutter (iOS + Android), NestJS + PostgreSQL on GCP, Gemini on the paid tier behind a provider abstraction.
 - **Look:** liquid glass with three selectable themes. Dawn is the default by day, Night Sanctuary by night.
 - **Business:** freemium at launch (limited AI messages per day), subscriptions later.
-- The MVP v1 scope and build order are in the companion doc, *TurnWell — MVP v1 Build Plan*.
+- The MVP v1 scope and build order are in the companion doc, [*TurnWell — MVP v1 Build Plan*](./MVP.md).
 
 ## 1. Vision and principles
 
@@ -547,7 +547,7 @@ Principles: crisis help, SOS and community are always free. No ads. Regional pri
 
 ### 11.5 Roadmap
 
-- **v1 (MVP):** onboarding conversation + plan, tracking, journal, coach chat, proactive nudges, SOS, crisis protocol, reach-out posts with AI moderation, disguise + PIN, Dawn + Night themes, 4 languages. Detailed in the companion build plan.
+- **v1 (MVP):** onboarding conversation + plan, tracking, journal, coach chat, proactive nudges, SOS, crisis protocol, reach-out posts with AI moderation, disguise + PIN, Dawn + Night themes, 4 languages. Detailed in the [companion build plan](./MVP.md).
 - **v2:** circles, DMs, accountability partners, subscriptions, voice coach, weekly reflection, replacement habits, Sins-mode positive practices and prayer times, widgets, Oasis theme.
 - **v3:** verified mentors, learning modules, web app, more languages, B2B partnerships (NGOs, associations).
 

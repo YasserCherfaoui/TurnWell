@@ -11,7 +11,7 @@ TurnWell v1 can ship in about 12 weeks solo (start Mon 2 Nov 2026, store submiss
 - **Riskiest parts:** end-to-end encryption + sync (week 5), crisis safety quality (week 6), and App Store review of a mental-wellness app with user content (week 12). Each has a mitigation below.
 - **Estimated running cost at launch:** roughly 125–280 USD/month for GCP + AI at up to 1,000 monthly active users.
 - **Not blocked by code:** the legal entity must be decided by week 8 to open store accounts in time.
-- Full product details live in *TurnWell — Product Specs Book*; feature IDs (F-xx) below refer to it.
+- Full product details live in [*TurnWell — Product Specs Book*](./SPECS.md); feature IDs (F-xx) below refer to it.
 
 ## Scope
 

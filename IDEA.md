@@ -1,7 +1,7 @@
 # TurnWell — Ideation Decisions Log
 _Last updated: 2026-10-30_
 
-**Specs:** [TurnWell — Product Specs Book](https://claude.ai/artifact/HzQKcqhpUaRZMPrY4SGQoV) · [TurnWell — MVP v1 Build Plan](https://claude.ai/artifact/NhS8XLiS3HfVzasqdcVQ5C)
+**Specs:** [TurnWell — Product Specs Book](./SPECS.md) · [TurnWell — MVP v1 Build Plan](./MVP.md)
 
 ## Product
 - **Name:** TurnWell (formal trademark / store-name check still pending)
