@@ -13,4 +13,5 @@ Step-by-step educational documentation of the TurnWell NestJS backend foundation
 | **0005** | [0005 — Code Store & Email Verification Engine](./0005-code-store-and-verification.md) | Redis & in-memory verification code store, 15-min TTL, 60s cooldown limit, max 5 attempts lockout (`AUTH_CODE_LOCKED`). |
 | **0006** | [0006 — Auth & Users Modules Implementation](./0006-auth-and-users-modules.md) | Implementation of all M01 auth endpoints, `/v1/me`, 18+ gate confirmation, device/push tokens, and `/health`. |
 | **0007** | [0007 — Testing & Verification Strategy](./0007-testing-and-verification.md) | Vitest unit tests, `TestPrismaService` in-memory mock, Supertest E2E integration test suite, linter, and build commands. |
+| **0008** | [0008 — Backend Environment & Configuration](./0008-backend-environment-and-configuration.md) | `.env.example` setup, configuration schema, zero-friction local dev fallbacks (in-memory JWT & OTP store), and quick-start guide. |
 

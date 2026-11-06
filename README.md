@@ -13,6 +13,7 @@ Welcome to the TurnWell documentation index.
     - [0005 — Code Store & Email Verification Engine](./walkthroughs/backend/0005-code-store-and-verification.md)
     - [0006 — Auth & Users Modules Implementation](./walkthroughs/backend/0006-auth-and-users-modules.md)
     - [0007 — Testing & Verification Strategy](./walkthroughs/backend/0007-testing-and-verification.md)
+    - [0008 — Backend Environment & Configuration](./walkthroughs/backend/0008-backend-environment-and-configuration.md)
   - **[Mobile Walkthroughs (`walkthroughs/mobile/`)](./walkthroughs/mobile/README.md)**:
     - [0001 — Mobile Foundations, Liquid Glass Design System & Auth UI](./walkthroughs/mobile/0001-setup-design-system-and-auth.md)
 - **[turnwell-specs/](./turnwell-specs/README.md)** — Full specification pack for AI-assisted development:
