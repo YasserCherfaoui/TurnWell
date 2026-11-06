@@ -4,6 +4,5 @@ This directory contains step-by-step architectural and implementation walkthroug
 
 ## Sections
 
-- **[Backend Walkthroughs (`backend/`)](./backend/README.md)** — Numbered guides covering the NestJS modular monolith, Prisma multi-schema ORM, security, cryptography, auth pipeline, and tests.
-- **Mobile Walkthroughs (`mobile/`)** — Reserved for Flutter app architecture, Riverpod state, Drift local database, and design system implementation guides.
-
+- **[Backend Walkthroughs (`backend/`)](./backend/README.md)** — Numbered guides covering the NestJS modular monolith, Prisma multi-schema ORM, security, cryptography, auth pipeline, and tests (`0001` through `0007`).
+- **[Mobile Walkthroughs (`mobile/`)](./mobile/README.md)** — Numbered guides covering the Flutter mobile client, Riverpod state architecture, Liquid Glass design system, route guards, and screens (`0001` onwards).
