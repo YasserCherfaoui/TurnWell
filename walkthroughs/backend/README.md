@@ -14,4 +14,6 @@ Step-by-step educational documentation of the TurnWell NestJS backend foundation
 | **0006** | [0006 — Auth & Users Modules Implementation](./0006-auth-and-users-modules.md) | Implementation of all M01 auth endpoints, `/v1/me`, 18+ gate confirmation, device/push tokens, and `/health`. |
 | **0007** | [0007 — Testing & Verification Strategy](./0007-testing-and-verification.md) | Vitest unit tests, `TestPrismaService` in-memory mock, Supertest E2E integration test suite, linter, and build commands. |
 | **0008** | [0008 — Backend Environment & Configuration](./0008-backend-environment-and-configuration.md) | `.env.example` setup, configuration schema, zero-friction local dev fallbacks (in-memory JWT & OTP store), and quick-start guide. |
+| **0009** | [0009 — Onboarding Setup & Profile Configuration (M03)](./0009-onboarding-setup-and-profile.md) | `OnboardingModule`, `PUT /v1/onboarding/setup`, `GET /v1/onboarding/state`, 4-language authority title blocklist validator (`ONBOARDING_INVALID_COACH_NAME`), `private.profiles` upsert, and `MeDto.onboardingStep`. |
+
 
